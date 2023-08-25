@@ -1,0 +1,21 @@
+// Encryption function
+function encryptText(text, password) {
+    return CryptoJS.AES.encrypt(text, password).toString();
+}
+
+// Decryption function
+function decryptText(encryptedText, password) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedText, password);
+    return decryptedBytes.toString(CryptoJS.enc.Utf8);
+}
+
+// Encrypt file data and return as Base64-encoded string
+function encryptFile(fileData, password) {
+    return CryptoJS.AES.encrypt(fileData, password).toString();
+}
+
+// Decrypt file data from Base64-encoded string
+function decryptFile(encryptedFileData, password) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedFileData, password);
+    return decryptedBytes.toString(CryptoJS.enc.Utf8);
+}
