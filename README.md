@@ -1,5 +1,28 @@
 # CryptoCipherHub
- A central place for encryption and decryption using cryptography.
+
+CryptoCipherHub is a central place for encryption and decryption using cryptography. It provides functions for encrypting and decrypting text and file contents using the AES algorithm in combination with the CryptoJS library.
+
+## Overview
+
+This project showcases encryption and decryption using the AES algorithm in combination with the CryptoJS library. It offers functionality to secure data by encrypting and decrypting both text and file contents.
+
+## Features
+
+- Encrypt textual messages with a chosen password.
+- Decrypt previously encrypted messages using the same password.
+- Encrypt file data (encoded in base64) and subsequently decrypt it.
+
+## Usage
+
+To use CryptoCipherHub in your project:
+
+1. **Include CryptoJS:**
+   Ensure that you've included the CryptoJS library in your project. You can download it from the official CryptoJS website or use a Content Delivery Network (CDN) link.
+
+2. **Encryption and Decryption Functions:**
+   Utilize the provided JavaScript functions to carry out encryption and decryption tasks within your project.
+
+```javascript
 // Encryption function
 function encryptText(text, password) {
     return CryptoJS.AES.encrypt(text, password).toString();
@@ -7,20 +30,7 @@ function encryptText(text, password) {
 
 // Decryption function
 function decryptText(encryptedText, password) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedText, password);CryptoJS Encryption and Decryption
-This project showcases encryption and decryption using the AES algorithm in combination with the CryptoJS library. It offers functionality to secure data by encrypting and decrypting both text and file contents.
-
-Overview
-The project includes JavaScript functions that facilitate the encryption and decryption processes using AES encryption and the CryptoJS library. The primary goal is to provide a simple yet illustrative example of how encryption and decryption work in a web-based context.
-
-Features
-Encrypt textual messages with a chosen password.
-Decrypt previously encrypted messages using the same password.
-Encrypt file data (encoded in base64) and subsequently decrypt it.
-Usage
-Include CryptoJS: Ensure that you've included the CryptoJS library in your project. You can download it from the official CryptoJS website or use a Content Delivery Network (CDN) link.
-
-Encryption and Decryption Functions: Utilize the provided JavaScript functions to carry out encryption and decryption tasks within your project.
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedText, password);
     return decryptedBytes.toString(CryptoJS.enc.Utf8);
 }
 
