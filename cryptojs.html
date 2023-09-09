@@ -1,70 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AES Encryption and Decryption</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-</head>
-<body>
-    <h1>AES Encryption and Decryption</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
-    <!-- Input for entering text to be encrypted -->
-    <label for="message">Message:</label>
-    <textarea id="message" rows="4" cols="50"></textarea><br>
+<script>
+    // Function to encrypt the entered message or uploaded file
+    function encrypt() {
+        const message = document.getElementById("message").value;
+        const fileInput = document.getElementById("uploadFile");
+        const password = document.getElementById("password").value;
 
-    <!-- Input for uploading a file -->
-    <label for="uploadFile">Upload File:</label>
-    <input type="file" id="uploadFile"><br>
-
-    <!-- Input for the encryption/decryption password -->
-    <label for="password">Password:</label>
-    <input type="password" id="password"><br>
-
-    <!-- Buttons to trigger encryption and decryption functions -->
-    <button onclick="encrypt()">Encrypt</button>
-    <button onclick="decrypt()">Decrypt</button>
-
-    <!-- Display area for encrypted and decrypted data -->
-    <h2>Encrypted Data:</h2>
-    <p id="encryptedData"></p>
-
-    <h2>Decrypted Data:</h2>
-    <p id="decryptedData"></p>
-
-    <script>
-        // Function to encrypt the entered message or uploaded file
-        function encrypt() {
-            const message = document.getElementById("message").value;
-            const fileInput = document.getElementById("uploadFile");
-            const password = document.getElementById("password").value;
-
-            // If there is a message, encrypt it
-            if (message) {
-                const encryptedMessage = CryptoJS.AES.encrypt(message, password).toString();
-                document.getElementById("encryptedData").textContent = encryptedMessage;
-            }
-
-            // If a file is selected, encrypt its data
-            if (fileInput.files.length > 0) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const fileData = event.target.result;
-                    const encryptedFile = CryptoJS.AES.encrypt(fileData, password).toString();
-                    document.getElementById("encryptedData").textContent = encryptedFile;
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
+        // If there is a message, encrypt it
+        if (message) {
+            const encryptedMessage = CryptoJS.AES.encrypt(message, password).toString();
+            console.log("Encrypted Data:", encryptedMessage);
         }
 
-        // Function to decrypt the encrypted data
-        function decrypt() {
-            const encryptedData = document.getElementById("encryptedData").textContent;
-            const password = document.getElementById("password").value;
-
-            // Decrypt the encrypted data using the provided password
-            const decrypted = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
-            // Display the decrypted data
-            document.getElementById("decryptedData").textContent = decrypted;
+        // If a file is selected, encrypt its data
+        if (fileInput.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fileData = event.target.result;
+                const encryptedFile = CryptoJS.AES.encrypt(fileData, password).toString();
+                console.log("Encrypted Data:", encryptedFile);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
         }
-    </script>
-</body>
-</html>
+    }
+
+    // Function to decrypt the encrypted data
+    function decrypt() {
+        const encryptedData = document.getElementById("encryptedData").textContent;
+        const password = document.getElementById("password").value;
+
+        // Decrypt the encrypted data using the provided password
+        const decrypted = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
+        console.log("Decrypted Data:", decrypted);
+    }
+</script>
